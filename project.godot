@@ -50,6 +50,7 @@ texture={
 2d_physics/layer_2="enemis"
 2d_physics/layer_3="tower_place"
 2d_physics/layer_4="tower_body"
+2d_physics/layer_5="projectile"
 
 [rendering]
 

@@ -14,4 +14,7 @@ func _draw():
 func take_damages(amount):
 	health -= amount
 	if health <= 0:
+		if randi() % 100 <= 5:
+			get_node("/root/game/ui/ressource").unlock()
+			get_node("/root/game/ui/ressource").set_amount(1)
 		queue_free()

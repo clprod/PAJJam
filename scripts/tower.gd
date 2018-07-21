@@ -18,7 +18,7 @@ func _ready():
 
 func _process(delta):
 	attack_timer -= delta
-	if attack_timer <= 0 and $Area2DRange.get_overlapping_areas().size() > 0:
+	if attack_timer <= 0 and $Area2DRange.get_overlapping_bodies().size() > 0:
 		if aoe:
 			attack_all()
 		else:
@@ -37,10 +37,12 @@ func _process(delta):
 
 	if durability_control != null:
 		durability_control.rect_position = get_global_mouse_position()
+		if durability_control.visible == false:
+			durability_control.show()
 
 func attack_all():
 	print("attack all")
-	for e in $Area2DRange.get_overlapping_areas():
+	for e in $Area2DRange.get_overlapping_bodies():
 		e.get_parent().take_damages(5)
 
 func attack_one():
@@ -48,13 +50,9 @@ func attack_one():
 	var to_attack = find_last()
 	
 	var projectile = projectile_scene.instance()
-	print(projectile)
-	get_node("/root/game/towers").add_child(projectile)
-	projectile.global_position = self.global_position
-	projectile.direction = (to_attack.global_position - self.global_position).normalized()
-	
-	# TODO : faire un signal projectil <==> enemi
-	#to_attack.take_damages(5)
+	get_node("/root/game").add_child(projectile)
+	projectile.global_position = global_position
+	projectile.direction = (to_attack.global_position - global_position).normalized()
 
 func destroy_tower():
 	print("tower destroyed")
@@ -64,10 +62,10 @@ func destroy_tower():
 	queue_free()
 
 func find_last():
-	if $Area2DRange.get_overlapping_areas().size() <= 0:
+	if $Area2DRange.get_overlapping_bodies().size() <= 0:
 		return null
-	var last = $Area2DRange.get_overlapping_areas()[0].get_parent()
-	for e in $Area2DRange.get_overlapping_areas():
+	var last = $Area2DRange.get_overlapping_bodies()[0].get_parent()
+	for e in $Area2DRange.get_overlapping_bodies():
 		if e.get_parent().offset > last.offset:
 			last = e.get_parent()
 	return last
