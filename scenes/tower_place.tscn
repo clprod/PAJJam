@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://textures/spot.png" type="Texture" id=1]
+[ext_resource path="res://scripts/tower_place.gd" type="Script" id=2]
+[ext_resource path="res://scenes/towers/tower_projectile.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/towers/tower_aoe.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 32 )
+
+[node name="tower_place" type="Sprite" index="0"]
+
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 64, 32, 32 )
+script = ExtResource( 2 )
+projectile_tower_base = ExtResource( 3 )
+aoe_tower_base = ExtResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="." index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 4
+collision_mask = 0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+shape = SubResource( 1 )
+
+[connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]
+
+

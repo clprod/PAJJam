@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://textures/chemin_h.png" type="Texture" id=1]
+[ext_resource path="res://textures/chemin_v.png" type="Texture" id=2]
+[ext_resource path="res://textures/sol.png" type="Texture" id=3]
+[ext_resource path="res://textures/sol_2.png" type="Texture" id=4]
+[ext_resource path="res://textures/coin_bas_droit.png" type="Texture" id=5]
+
+[node name="tileset2" type="Node2D" index="0"]
+
+[node name="chemin_h" type="Sprite" parent="." index="0"]
+
+position = Vector2( 64, 0 )
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="chemin_v" type="Sprite" parent="." index="1"]
+
+position = Vector2( 128, 0 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="sol" type="Sprite" parent="." index="2"]
+
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="sol2" type="Sprite" parent="." index="3"]
+
+position = Vector2( 0, 64 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="coin_bas_droit" type="Sprite" parent="." index="4"]
+
+position = Vector2( 192, 0 )
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+
+
