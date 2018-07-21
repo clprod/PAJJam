@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/tower.gd" type="Script" id=1]
+[ext_resource path="res://scenes/projectile_base.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -12,13 +13,14 @@ radius = 80.0
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
-[node name="tower_aoe" type="Node2D" index="0"]
+[node name="tower_aoe" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 aoe = true
 attack_cooldown = 1
 durability = 10
+projectile_scene = ExtResource( 2 )
 
 [node name="Area2DRange" type="Area2D" parent="." index="0"]
 

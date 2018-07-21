@@ -11,6 +11,8 @@ var show_infos = false
 var current_durability
 var durability_control
 
+export(PackedScene) var projectile_scene
+
 func _ready():
 	current_durability = durability
 
@@ -44,8 +46,15 @@ func attack_all():
 func attack_one():
 	print("attack one")
 	var to_attack = find_last()
-
-	to_attack.take_damages(5)
+	
+	var projectile = projectile_scene.instance()
+	print(projectile)
+	get_node("/root/game/towers").add_child(projectile)
+	projectile.global_position = self.global_position
+	projectile.direction = (to_attack.global_position - self.global_position).normalized()
+	
+	# TODO : faire un signal projectil <==> enemi
+	#to_attack.take_damages(5)
 
 func destroy_tower():
 	print("tower destroyed")

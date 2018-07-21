@@ -5,7 +5,7 @@
 [ext_resource path="res://scenes/maps/map2.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/ui/durability_text.tscn" type="PackedScene" id=4]
 
-[node name="game" type="Node2D" index="0"]
+[node name="game" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -35,5 +35,7 @@ size_flags_vertical = 1
 [node name="durability_text" parent="ui" index="0" instance=ExtResource( 4 )]
 
 visible = false
+
+[node name="projectiles" type="Node2D" parent="." index="3"]
 
 
