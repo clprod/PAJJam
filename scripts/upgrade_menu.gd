@@ -3,12 +3,13 @@ extends Control
 export(int) var repair_price = 6
 
 var ruins
-var original_tower = ""
-var fire_tower = ""
-var ice_tower = ""
+var original_tower
+var fire_tower
+var ice_tower
 
 func open():
 	show()
+	print(fire_tower)
 	$Control/Panel/HBoxContainer/repair_container/repair_price_container/repair_price_label.text = str(repair_price)
 	if get_node("/root/game").wood_nb < repair_price:
 		$Control/Panel/HBoxContainer/repair_container/repair_price_container.modulate = Color(1, 0, 0, 0.7)
@@ -46,7 +47,10 @@ func _on_repair_button_pressed():
 	remove_ruins()
 
 func _on_fire_button_pressed():
-	pass # replace with function body
+	place_tower(load(fire_tower).instance())
+	get_node("/root/game").change_fire(-1)
+	hide()
+	remove_ruins()
 
 func _on_ice_button_pressed():
 	pass # replace with function body

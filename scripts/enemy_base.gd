@@ -14,7 +14,7 @@ func take_damages(amount):
 	if health <= 0:
 		var game = get_node("/root/game")
 		game.change_wood(5)
-		if randi() % 100 <= 3:
+		if randi() % 100 <= 100:
 			if randi() % 2 == 0:
 				game.change_fire(1)
 			else:
