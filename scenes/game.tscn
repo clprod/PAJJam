@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/enemy_base.tscn" type="PackedScene" id=2]
@@ -15,22 +15,104 @@
 [ext_resource path="res://scenes/ui/anouncement.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/ui/end_game_text.tscn" type="PackedScene" id=14]
 
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Camera2D
+
+var _duration = 0.0
+var _period_in_ms = 0.0
+var _amplitude = 0.0
+var _timer = 0.0
+var _last_shook_timer = 0
+var _previous_x = 0.0
+var _previous_y = 0.0
+var _last_offset = Vector2(0, 0)
+
+# Shake with decreasing intensity while there's time remaining.
+func _process(delta):
+    # Only shake when there's shake time remaining.
+    if _timer == 0:
+        return
+    # Only shake on certain frames.
+    _last_shook_timer = _last_shook_timer + delta
+    # Be mathematically correct in the face of lag; usually only happens once.
+    while _last_shook_timer >= _period_in_ms:
+        _last_shook_timer = _last_shook_timer - _period_in_ms
+        # Lerp between [amplitude] and 0.0 intensity based on remaining shake time.
+        var intensity = _amplitude * (1 - ((_duration - _timer) / _duration))
+        # Noise calculation logic from http://jonny.morrill.me/blog/view/14
+        var new_x = rand_range(-1.0, 1.0)
+        var x_component = intensity * (_previous_x + (delta * (new_x - _previous_x)))
+        var new_y = rand_range(-1.0, 1.0)
+        var y_component = intensity * (_previous_y + (delta * (new_y - _previous_y)))
+        _previous_x = new_x
+        _previous_y = new_y
+        # Track how much we've moved the offset, as opposed to other effects.
+        var new_offset = Vector2(x_component, y_component)
+        set_offset(get_offset() - _last_offset + new_offset)
+        _last_offset = new_offset
+    # Reset the offset when we're done shaking.
+    _timer = _timer - delta
+    if _timer <= 0:
+        _timer = 0
+        set_offset(get_offset() - _last_offset)
+
+# Kick off a new screenshake effect.
+func shake(duration, frequency, amplitude):
+    # Initialize variables.
+    _duration = duration
+    _timer = duration
+    _period_in_ms = 1.0 / frequency
+    _amplitude = amplitude
+    _previous_x = rand_range(-1.0, 1.0)
+    _previous_y = rand_range(-1.0, 1.0)
+    # Reset previous offset, if any.
+    set_offset(get_offset() - _last_offset)
+    _last_offset = Vector2(0, 0)
+"
+
 [node name="game" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 enemy_scene = ExtResource( 2 )
 
-[node name="map2" parent="." index="0" instance=ExtResource( 3 )]
+[node name="Camera2D" type="Camera2D" parent="." index="0"]
+
+anchor_mode = 0
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+script = SubResource( 1 )
+
+[node name="map2" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 0, -1.50734 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="towers" type="Node2D" parent="." index="1"]
+[node name="towers" type="Node2D" parent="." index="2"]
 
 _sections_unfolded = [ "Transform" ]
 
-[node name="ui" type="Control" parent="." index="2"]
+[node name="ui" type="Control" parent="." index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0

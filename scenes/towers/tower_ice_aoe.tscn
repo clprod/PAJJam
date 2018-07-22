@@ -6,8 +6,11 @@
 
 original_scene = "res://scenes/towers/tower_ice_aoe.tscn"
 fire_scene = ""
+ice_scene = ""
 attack_cooldown = 2.0
 durability = 20
+is_fire = false
+is_ice = true
 
 [node name="Sprite" parent="." index="0"]
 

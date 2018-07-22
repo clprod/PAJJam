@@ -29,6 +29,7 @@ func _process(delta):
 
 func take_damages(amount):
 	health -= amount
+	get_node("/root/game/Camera2D").shake(0.2, 15, 2)
 	if health <= 0:
 		var game = get_node("/root/game")
 		game.change_wood(4)

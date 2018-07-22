@@ -17,6 +17,8 @@ var show_infos = false
 var current_durability
 var durability_control
 var is_destroy
+export var is_fire = false
+export var is_ice = false
 
 export(PackedScene) var projectile_scene
 
@@ -63,6 +65,10 @@ func attack_all():
 	atack_sound.play()
 	for e in $Area2DRange.get_overlapping_bodies():
 		e.get_parent().take_damages(damages)
+		if is_fire:
+			e.get_parent().burn()
+		if is_ice:
+			e.get_parent().slow()
 
 func attack_one():
 	var to_attack = find_last()
@@ -118,9 +124,10 @@ func _on_Area2D2_mouse_entered():
 func _on_Area2DBody_mouse_exited():
 	show_infos = false
 	update()
-	durability_control.hide()
-	disconnect("durability_changed", durability_control, "set_durability")
-	durability_control = null
+	if durability_control != null:
+		durability_control.hide()
+		disconnect("durability_changed", durability_control, "set_durability")
+		durability_control = null
 
 func _on_Timer_destroy_timeout():
 	queue_free()
