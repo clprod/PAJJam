@@ -80,7 +80,7 @@ func _draw():
 		draw_circle(Vector2(), 16, Color(0, 0, 1))
 	
 	if show_infos:
-		draw_circle(Vector2(), $Area2DRange/CollisionShape2D.shape.radius, Color(0, 1, 0, 0.1))
+		draw_circle(Vector2(), $Area2DRange/CollisionShape2D.shape.radius, Color(1, 0, 0, 0.2))
 
 func _on_Area2D2_mouse_entered():
 	show_infos = true
