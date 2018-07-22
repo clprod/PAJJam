@@ -13,4 +13,5 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 			tower = projectile_tower_base.instance()
 		tower.position = position
 		get_node("/root/game/towers").add_child(tower)
+		get_node("/root/game").change_wood(-10)
 		queue_free()
