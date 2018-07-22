@@ -44,7 +44,7 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.7 ),
-"transitions": PoolRealArray( -4, 1 ),
+"transitions": PoolRealArray( 4, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.509804 ) ]
 }
@@ -375,5 +375,7 @@ anims/show_places = SubResource( 2 )
 blend_times = [  ]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 
 

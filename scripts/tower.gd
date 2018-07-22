@@ -22,6 +22,7 @@ func _ready():
 func _process(delta):
 	attack_timer -= delta
 	if attack_timer <= 0 and $Area2DRange.get_overlapping_bodies().size() > 0:
+		$AnimationPlayer.play("attack")
 		if aoe:
 			attack_all()
 		else:

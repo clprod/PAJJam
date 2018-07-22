@@ -9,7 +9,6 @@ func _process(delta):
 		get_node("/root/game").life_nb -= 1
 		queue_free()
 
-
 func take_damages(amount):
 	health -= amount
 	if health <= 0:
@@ -21,3 +20,5 @@ func take_damages(amount):
 			else:
 				game.change_ice(1)
 		queue_free()
+	else:
+		$AnimationPlayer.play("hit")
