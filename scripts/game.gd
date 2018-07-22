@@ -37,13 +37,10 @@ func _ready():
 func _process(delta):
 	if life_nb <= 0 :
 		print("End Game : no more lives")
-	
+
 	if playing == false: # Between two waves
 		if Input.is_action_just_pressed("ui_accept"): # start next wave
-			playing = true
-			get_node("map2").play_anim("hide_places")
-			$ui/start_wave.hide()
-			print("Start wave")
+			start_wave()
 	else:
 		if current_wave >= waves.size() or waves[current_wave].size() <= 0: # no more enemies to spawn
 			if get_tree().get_nodes_in_group("enemies").size() <= 0: # and no more enemies running
@@ -51,7 +48,7 @@ func _process(delta):
 				spawn_timer = 0
 				playing = false
 				if current_wave >= waves.size():
-					print("End Game")
+					print("End Game : You won")
 				else:
 					print("End wave: press enter to start new wave")
 					get_node("map2").play_anim("show_places")
@@ -78,8 +75,12 @@ func change_ice(amount):
 	emit_signal("ice_changed", ice_nb)
 
 func _on_start_wave_pressed():
+	start_wave()
+
+func start_wave():
 	if playing == false: # Between two waves
 		playing = true
 		get_node("map2").play_anim("hide_places")
 		$ui/start_wave.hide()
-		print("Start wave")
+		$ui/anouncement.play_anim()
+		$ui/anouncement/Control/TextureRect/Label.text = "Wave " + str(current_wave)
