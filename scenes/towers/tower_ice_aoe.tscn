@@ -9,4 +9,9 @@ fire_scene = ""
 attack_cooldown = 2.0
 durability = 20
 
+[node name="Sprite" parent="." index="0"]
+
+self_modulate = Color( 0.539062, 0.578674, 1, 1 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
 

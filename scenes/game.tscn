@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/enemy_base.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://scenes/towers/tower_aoe.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/ui/upgrade_menu.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/ui/anouncement.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/ui/end_game_text.tscn" type="PackedScene" id=14]
 
 [node name="game" type="Node2D" index="0"]
 
@@ -22,6 +23,7 @@ enemy_scene = ExtResource( 2 )
 
 [node name="map2" parent="." index="0" instance=ExtResource( 3 )]
 
+position = Vector2( 0, -1.50734 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="towers" type="Node2D" parent="." index="1"]
@@ -124,6 +126,17 @@ margin_right = 20.0
 margin_bottom = 40.0
 _sections_unfolded = [ "Rect" ]
 
+[node name="end_game_text" parent="ui" index="8" instance=ExtResource( 14 )]
+
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 218.0
+margin_top = 538.0
+margin_right = 571.0
+margin_bottom = 595.0
+_sections_unfolded = [ "Rect" ]
+
 [connection signal="fire_changed" from="." to="ui/ressource_fire" method="set_amount"]
 
 [connection signal="ice_changed" from="." to="ui/ressource_ice" method="set_amount"]
@@ -132,7 +145,10 @@ _sections_unfolded = [ "Rect" ]
 
 [connection signal="pressed" from="ui/start_wave" to="." method="_on_start_wave_pressed"]
 
+[connection signal="pressed" from="ui/end_game_text/Button" to="." method="_on_restart_pressed"]
+
 
 [editable path="ui/ressource_fire"]
 [editable path="ui/ressource_ice"]
 [editable path="ui/ressource_wood"]
+[editable path="ui/end_game_text"]
