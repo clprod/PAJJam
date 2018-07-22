@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scripts/tower.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ruins.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/projectile_base.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/rock_projectile.tscn" type="PackedScene" id=3]
 [ext_resource path="res://textures/spot_2.png" type="Texture" id=4]
 [ext_resource path="res://textures/tower_1.png" type="Texture" id=5]
 
