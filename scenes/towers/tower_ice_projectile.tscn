@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/towers/tower_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/ice_projectile.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://textures/tower_1_ice.png" type="Texture" id=4]
 [ext_resource path="res://textures/projectile_ice.png" type="Texture" id=5]
 [ext_resource path="res://sounds/Water Droplet-SoundBible.com-854529508.wav" type="AudioStream" id=6]
+[ext_resource path="res://sounds/Bone Crushing.mp3-SoundBible.com-537581287.wav" type="AudioStream" id=7]
 
 [sub_resource type="ParticlesMaterial" id=1]
 
@@ -71,6 +72,8 @@ original_scene = "res://scenes/towers/tower_ice_projectile.tscn"
 attack_cooldown = 1.5
 damages = 3.0
 durability = 20
+is_fire = false
+is_ice = false
 projectile_scene = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
@@ -122,5 +125,23 @@ stream = ExtResource( 6 )
 volume_db = 10.0
 pitch_scale = 0.2
 attenuation = 0.00142977
+
+[node name="destroy_sound" type="AudioStreamPlayer2D" parent="." index="6"]
+
+stream = ExtResource( 7 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="Timer" type="Timer" parent="destroy_sound" index="0"]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = false
+autostart = false
 
 

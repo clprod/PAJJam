@@ -38,7 +38,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 0.7 ), Vector2( 1, 1 ) ]
 }
 
-[node name="tower_projectile" type="Node2D" index="0"]
+[node name="tower_projectile" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -50,6 +50,8 @@ attack_cooldown = 0.9
 damages = 4.0
 durability = 12
 ruin_scene = ExtResource( 2 )
+is_fire = false
+is_ice = false
 projectile_scene = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
