@@ -5,6 +5,7 @@ signal durability_changed(new, maximum)
 export(bool) var aoe = false
 export(float) var attack_cooldown = 1
 export(int) var durability = 10
+export(PackedScene) var ruin_scene
 var attack_timer = 0
 
 var show_infos = false
@@ -15,6 +16,8 @@ export(PackedScene) var projectile_scene
 
 func _ready():
 	current_durability = durability
+	if not aoe:
+		$Sprite/Sprite.rotate(deg2rad(randi() % 360))
 
 func _process(delta):
 	attack_timer -= delta
@@ -41,12 +44,10 @@ func _process(delta):
 			durability_control.show()
 
 func attack_all():
-	print("attack all")
 	for e in $Area2DRange.get_overlapping_bodies():
 		e.get_parent().take_damages(5)
 
 func attack_one():
-	print("attack one")
 	var to_attack = find_last()
 	
 	var projectile = projectile_scene.instance()
@@ -57,8 +58,12 @@ func attack_one():
 func destroy_tower():
 	print("tower destroyed")
 	if durability_control != null:
-		durability_control.hide()
 		disconnect("durability_changed", durability_control, "set_durability")
+		durability_control.hide()
+		durability_control = null
+	var ruins = ruin_scene.instance()
+	get_node("/root/game/towers").add_child(ruins)
+	ruins.position = position
 	queue_free()
 
 func find_last():
@@ -73,8 +78,6 @@ func find_last():
 func _draw():
 	if aoe:
 		draw_circle(Vector2(), 16, Color(0, 0, 1))
-	else:
-		draw_circle(Vector2(), 16, Color(0, 0.3, 0.3))
 	
 	if show_infos:
 		draw_circle(Vector2(), $Area2DRange/CollisionShape2D.shape.radius, Color(0, 1, 0, 0.1))

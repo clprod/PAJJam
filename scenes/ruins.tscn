@@ -1,24 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://textures/spot.png" type="Texture" id=1]
-[ext_resource path="res://scripts/tower_place.gd" type="Script" id=2]
-[ext_resource path="res://scenes/towers/tower_projectile.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/towers/tower_aoe.tscn" type="PackedScene" id=4]
+[ext_resource path="res://textures/ruins_wood.png" type="Texture" id=1]
+[ext_resource path="res://scripts/ruins.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
-[node name="tower_place" type="Sprite" index="0"]
+[node name="ruins" type="Sprite" index="0"]
 
-self_modulate = Color( 1, 1, 1, 0.502745 )
 texture = ExtResource( 1 )
-region_rect = Rect2( 0, 64, 32, 32 )
 script = ExtResource( 2 )
-_sections_unfolded = [ "Visibility" ]
-projectile_tower_base = ExtResource( 3 )
-aoe_tower_base = ExtResource( 4 )
 
 [node name="Area2D" type="Area2D" parent="." index="0"]
 

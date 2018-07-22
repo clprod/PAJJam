@@ -8,7 +8,7 @@
 [ext_resource path="res://textures/fire.png" type="Texture" id=6]
 [ext_resource path="res://textures/ice.png" type="Texture" id=7]
 
-[node name="game" type="Node2D"]
+[node name="game" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -24,7 +24,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="ui" type="Control" parent="." index="2"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -42,31 +41,40 @@ size_flags_vertical = 1
 
 visible = false
 
-[node name="ressource" parent="ui" index="1" instance=ExtResource( 5 )]
-
-editor/display_folded = true
-
-[node name="TextureRect" parent="ui/ressource/Panel" index="0"]
-
-texture = ExtResource( 6 )
-
-[node name="ressource2" parent="ui" index="2" instance=ExtResource( 5 )]
+[node name="ressource_fire" parent="ui" index="1" instance=ExtResource( 5 )]
 
 editor/display_folded = true
 margin_top = 54.0
 margin_bottom = 104.0
+_sections_unfolded = [ "Rect", "Size Flags" ]
 
-[node name="TextureRect" parent="ui/ressource2/Panel" index="0"]
+[node name="TextureRect" parent="ui/ressource_fire/Panel" index="0"]
 
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 
-[node name="ressource3" parent="ui" index="3" instance=ExtResource( 5 )]
+[node name="ressource_ice" parent="ui" index="2" instance=ExtResource( 5 )]
 
 editor/display_folded = true
 margin_top = 109.0
 margin_bottom = 159.0
+_sections_unfolded = [ "Rect", "Size Flags" ]
+
+[node name="TextureRect" parent="ui/ressource_ice/Panel" index="0"]
+
+texture = ExtResource( 7 )
+
+[node name="ressource_wood" parent="ui" index="3" instance=ExtResource( 5 )]
+
+editor/display_folded = true
+_sections_unfolded = [ "Rect", "Size Flags" ]
+
+[connection signal="fire_changed" from="." to="ui/ressource_fire" method="set_amount"]
+
+[connection signal="ice_changed" from="." to="ui/ressource_ice" method="set_amount"]
+
+[connection signal="wood_changed" from="." to="ui/ressource_wood" method="set_amount"]
 
 
-[editable path="ui/ressource"]
-[editable path="ui/ressource2"]
-[editable path="ui/ressource3"]
+[editable path="ui/ressource_fire"]
+[editable path="ui/ressource_ice"]
+[editable path="ui/ressource_wood"]
