@@ -5,6 +5,7 @@ signal durability_changed(new, maximum)
 export(bool) var aoe = false
 export(float) var attack_cooldown = 1
 export(int) var durability = 10
+export(PackedScene) var ruin_scene
 var attack_timer = 0
 
 var show_infos = false
@@ -57,8 +58,12 @@ func attack_one():
 func destroy_tower():
 	print("tower destroyed")
 	if durability_control != null:
-		durability_control.hide()
 		disconnect("durability_changed", durability_control, "set_durability")
+		durability_control.hide()
+		durability_control = null
+	var ruins = ruin_scene.instance()
+	get_node("/root/game/towers").add_child(ruins)
+	ruins.position = position
 	queue_free()
 
 func find_last():
