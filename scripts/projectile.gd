@@ -10,6 +10,8 @@ func _process(delta):
 	if collision != null:
 		collision.collider.get_parent().take_damages(5)
 		queue_free()
+	if global_position.x < 0 || global_position.y < 0 || global_position.x > Globals.get("display/width") || global_position.y > Globals.get("display/heigh"):
+		queue_free()
 
 func _draw():
 	draw_circle(Vector2(), 6, Color(1, 0, 1))
