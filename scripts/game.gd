@@ -22,6 +22,7 @@ var current_wave
 var playing = false
 
 var life_nb = 3
+var game_ended = false
 
 signal wood_changed(amount)
 signal fire_changed(amount)
@@ -35,8 +36,17 @@ func _ready():
 	current_wave = 0
 
 func _process(delta):
+	if game_ended:
+		return
+
+	if Input.is_action_just_pressed("restart"):
+		get_tree().change_scene("res://scenes/game.tscn")
 	if life_nb <= 0 :
 		print("End Game : no more lives")
+		$ui/end_game_text/Control/Panel/Label.text = "End Game : no more lives"
+		$ui/end_game_text.open()
+		game_ended = true
+		return
 
 	if playing == false: # Between two waves
 		if Input.is_action_just_pressed("ui_accept"): # start next wave
@@ -49,8 +59,10 @@ func _process(delta):
 				playing = false
 				if current_wave >= waves.size():
 					print("End Game : You won")
+					game_ended = true
+					$ui/end_game_text/Control/Panel/Label.text = "End Game : You won"
+					$ui/end_game_text.open()
 				else:
-					print("End wave: press enter to start new wave")
 					get_node("map2").play_anim("show_places")
 					$ui/start_wave.show()
 			return
@@ -84,3 +96,6 @@ func start_wave():
 		$ui/start_wave.hide()
 		$ui/anouncement.play_anim()
 		$ui/anouncement/Control/TextureRect/Label.text = "Wave " + str(current_wave)
+
+func _on_restart_pressed():
+	get_tree().change_scene("res://scenes/game.tscn")
