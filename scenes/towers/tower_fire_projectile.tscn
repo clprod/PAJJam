@@ -1,13 +1,53 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/towers/tower_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/fire_projectile.tscn" type="PackedScene" id=2]
 [ext_resource path="res://textures/spot_2.png" type="Texture" id=3]
 [ext_resource path="res://textures/tower_1_fire.png" type="Texture" id=4]
+[ext_resource path="res://textures/projectile_fire.png" type="Texture" id=5]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="ParticlesMaterial" id=1]
 
-resource_name = "attack"
+render_priority = 0
+trail_divisor = 1
+emission_shape = 1
+emission_sphere_radius = 0.5
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 50, 0 )
+initial_velocity = 1.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 1.0
+scale_random = 0.0
+color = Color( 1, 1, 1, 1 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Emission Shape", "Gravity", "Spread", "Trail" ]
+
+[sub_resource type="Animation" id=2]
+
 length = 0.7
 loop = false
 step = 0.1
@@ -41,6 +81,29 @@ texture = ExtResource( 3 )
 texture = ExtResource( 4 )
 _sections_unfolded = [ "Transform" ]
 
+[node name="Particles2D" type="Particles2D" parent="Sprite/Sprite" index="0"]
+
+position = Vector2( -0.598724, 18.8025 )
+emitting = true
+amount = 4
+lifetime = 0.8
+one_shot = false
+preprocess = 0.0
+speed_scale = 0.5
+explosiveness = 0.4
+randomness = 0.3
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 1 )
+texture = ExtResource( 5 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Transform", "Z Index" ]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 
 root_node = NodePath("..")
@@ -48,7 +111,7 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/attack = SubResource( 1 )
+anims/attack = SubResource( 2 )
 blend_times = [  ]
 
 
