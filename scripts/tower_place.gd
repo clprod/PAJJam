@@ -14,3 +14,9 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 		get_node("/root/game/towers").add_child(tower)
 		get_node("/root/game").change_wood(-10)
 		queue_free()
+
+func _on_Area2D_mouse_entered():
+	self_modulate = Color(0, 0, 1, 1)
+
+func _on_Area2D_mouse_exited():
+	self_modulate = Color(1, 1, 1, 1)
