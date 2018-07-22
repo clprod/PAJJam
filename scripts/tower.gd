@@ -20,9 +20,12 @@ var durability_control
 export(PackedScene) var projectile_scene
 
 var atack_sound
+var construction_sound
 
 func _ready():
 	atack_sound = get_node("atack_sound")
+	construction_sound = get_node("construct_sound")
+	construction_sound.play()
 	current_durability = durability
 	if not aoe:
 		$Sprite/Sprite.rotate(deg2rad(randi() % 360))
