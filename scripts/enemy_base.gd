@@ -9,8 +9,6 @@ func _process(delta):
 		get_node("/root/game").life_nb -= 1
 		queue_free()
 
-func _draw():
-	draw_circle(Vector2(), 16, Color(1, 0, 0))
 
 func take_damages(amount):
 	health -= amount

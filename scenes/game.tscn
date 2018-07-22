@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scripts/game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/enemy_base.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://scenes/ui/construction_menu.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/towers/tower_projectile.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/towers/tower_aoe.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/ui/upgrade_menu.tscn" type="PackedScene" id=12]
 
 [node name="game" type="Node2D" index="0"]
 
@@ -81,6 +82,8 @@ texture = ExtResource( 8 )
 _sections_unfolded = [ "Mouse", "Rect" ]
 projectile_tower_base = ExtResource( 10 )
 aoe_tower_base = ExtResource( 11 )
+
+[node name="upgrade_menu" parent="ui" index="5" instance=ExtResource( 12 )]
 
 [connection signal="fire_changed" from="." to="ui/ressource_fire" method="set_amount"]
 

@@ -17,7 +17,7 @@ var ice_nb = 0
 var current_wave
 var playing = false
 
-var life_nb = 10
+var life_nb = 3
 
 signal wood_changed(amount)
 signal fire_changed(amount)

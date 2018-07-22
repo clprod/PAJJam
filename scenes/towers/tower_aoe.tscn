@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/tower.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ruins.tscn" type="PackedScene" id=2]
+[ext_resource path="res://textures/tower_2.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -13,7 +14,7 @@ radius = 80.0
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
-[node name="tower_aoe" type="Node2D"]
+[node name="tower_aoe" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -23,7 +24,11 @@ durability = 10
 ruin_scene = ExtResource( 2 )
 projectile_scene = null
 
-[node name="Area2DRange" type="Area2D" parent="." index="0"]
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 3 )
+
+[node name="Area2DRange" type="Area2D" parent="." index="1"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -40,7 +45,7 @@ _sections_unfolded = [ "Collision", "Transform" ]
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Area2DBody" type="Area2D" parent="." index="1"]
+[node name="Area2DBody" type="Area2D" parent="." index="2"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
