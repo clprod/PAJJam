@@ -24,6 +24,7 @@ signal fire_changed(amount)
 signal ice_changed(amount)
 
 func _ready():
+	randomize()
 	emit_signal("wood_changed", wood_nb)
 	emit_signal("fire_changed", fire_nb)
 	emit_signal("ice_changed", ice_nb)
@@ -36,6 +37,7 @@ func _process(delta):
 	if playing == false: # Between two waves
 		if Input.is_action_just_pressed("ui_accept"): # start next wave
 			playing = true
+			get_node("map2").play_anim("hide_places")
 			print("Start wave")
 	else:
 		if current_wave >= waves.size() or waves[current_wave].size() <= 0: # no more enemies to spawn
@@ -47,6 +49,7 @@ func _process(delta):
 					print("End Game")
 				else:
 					print("End wave: press enter to start new wave")
+					get_node("map2").play_anim("show_places")
 			return
 
 		spawn_timer += delta

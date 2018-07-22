@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://tilesets/tileset2.tres" type="TileSet" id=1]
-[ext_resource path="res://scenes/tower_place.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/map.gd" type="Script" id=1]
+[ext_resource path="res://tilesets/tileset2.tres" type="TileSet" id=2]
+[ext_resource path="res://scenes/tower_place.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -10,15 +11,54 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -34.1572, 284.291, 0, 0, 0, 0, 220.441, 282.57, 0, 0, 0, 0, 223.782, 544.79, 0, 0, 0, 0, 414.183, 541.45, 0, 0, 0, 0, 412.513, 90.4988, 0, 0, 0, 0, 606.255, 90.4988, 0, 0, 0, 0, 606.255, 349.378, 0, 0, 0, 0, 866.074, 349.428 )
 }
 
+[sub_resource type="Animation" id=3]
+
+resource_name = "hide_places"
+length = 0.7
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("tower_places:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 2.83663, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.509804 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "show_places"
+length = 0.7
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("tower_places:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( -4, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.509804 ) ]
+}
+
 [node name="map2" type="Path2D" index="0"]
 
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 curve = SubResource( 1 )
+script = ExtResource( 1 )
 
 [node name="environment" type="TileMap" parent="." index="0"]
 
 mode = 0
-tile_set = ExtResource( 1 )
+tile_set = ExtResource( 2 )
 cell_size = Vector2( 64, 64 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -38,286 +78,302 @@ _sections_unfolded = [ "Cell" ]
 
 [node name="tower_places" type="Node2D" parent="." index="1"]
 
-_sections_unfolded = [ "Transform" ]
+editor/display_folded = true
+modulate = Color( 1, 1, 1, 0.509804 )
+self_modulate = Color( 1, 1, 1, 0.77898 )
+_sections_unfolded = [ "Transform", "Visibility" ]
 
-[node name="tower_place" parent="tower_places" index="0" instance=ExtResource( 2 )]
+[node name="tower_place" parent="tower_places" index="0" instance=ExtResource( 3 )]
 
 position = Vector2( 352, 352 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place5" parent="tower_places" index="1" instance=ExtResource( 2 )]
+[node name="tower_place5" parent="tower_places" index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 288, 352 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place6" parent="tower_places" index="2" instance=ExtResource( 2 )]
+[node name="tower_place6" parent="tower_places" index="2" instance=ExtResource( 3 )]
 
 position = Vector2( 32, 352 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place8" parent="tower_places" index="3" instance=ExtResource( 2 )]
+[node name="tower_place8" parent="tower_places" index="3" instance=ExtResource( 3 )]
 
 position = Vector2( 96, 352 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place10" parent="tower_places" index="4" instance=ExtResource( 2 )]
+[node name="tower_place10" parent="tower_places" index="4" instance=ExtResource( 3 )]
 
 position = Vector2( 160, 352 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place11" parent="tower_places" index="5" instance=ExtResource( 2 )]
+[node name="tower_place11" parent="tower_places" index="5" instance=ExtResource( 3 )]
 
 position = Vector2( 160, 224 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place12" parent="tower_places" index="6" instance=ExtResource( 2 )]
+[node name="tower_place12" parent="tower_places" index="6" instance=ExtResource( 3 )]
 
 position = Vector2( 224, 224 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place13" parent="tower_places" index="7" instance=ExtResource( 2 )]
+[node name="tower_place13" parent="tower_places" index="7" instance=ExtResource( 3 )]
 
 position = Vector2( 288, 288 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place14" parent="tower_places" index="8" instance=ExtResource( 2 )]
+[node name="tower_place14" parent="tower_places" index="8" instance=ExtResource( 3 )]
 
 position = Vector2( 288, 224 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place15" parent="tower_places" index="9" instance=ExtResource( 2 )]
+[node name="tower_place15" parent="tower_places" index="9" instance=ExtResource( 3 )]
 
 position = Vector2( 160, 416 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place16" parent="tower_places" index="10" instance=ExtResource( 2 )]
+[node name="tower_place16" parent="tower_places" index="10" instance=ExtResource( 3 )]
 
 position = Vector2( 160, 480 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place17" parent="tower_places" index="11" instance=ExtResource( 2 )]
+[node name="tower_place17" parent="tower_places" index="11" instance=ExtResource( 3 )]
 
 position = Vector2( 160, 544 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place18" parent="tower_places" index="12" instance=ExtResource( 2 )]
+[node name="tower_place18" parent="tower_places" index="12" instance=ExtResource( 3 )]
 
 position = Vector2( 160, 608 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place19" parent="tower_places" index="13" instance=ExtResource( 2 )]
+[node name="tower_place19" parent="tower_places" index="13" instance=ExtResource( 3 )]
 
 position = Vector2( 224, 608 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place20" parent="tower_places" index="14" instance=ExtResource( 2 )]
+[node name="tower_place20" parent="tower_places" index="14" instance=ExtResource( 3 )]
 
 position = Vector2( 288, 608 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place21" parent="tower_places" index="15" instance=ExtResource( 2 )]
+[node name="tower_place21" parent="tower_places" index="15" instance=ExtResource( 3 )]
 
 position = Vector2( 352, 608 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place22" parent="tower_places" index="16" instance=ExtResource( 2 )]
+[node name="tower_place22" parent="tower_places" index="16" instance=ExtResource( 3 )]
 
 position = Vector2( 352, 480 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place23" parent="tower_places" index="17" instance=ExtResource( 2 )]
+[node name="tower_place23" parent="tower_places" index="17" instance=ExtResource( 3 )]
 
 position = Vector2( 288, 480 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place24" parent="tower_places" index="18" instance=ExtResource( 2 )]
+[node name="tower_place24" parent="tower_places" index="18" instance=ExtResource( 3 )]
 
 position = Vector2( 416, 608 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place25" parent="tower_places" index="19" instance=ExtResource( 2 )]
+[node name="tower_place25" parent="tower_places" index="19" instance=ExtResource( 3 )]
 
 position = Vector2( 480, 608 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place26" parent="tower_places" index="20" instance=ExtResource( 2 )]
+[node name="tower_place26" parent="tower_places" index="20" instance=ExtResource( 3 )]
 
 position = Vector2( 480, 544 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place27" parent="tower_places" index="21" instance=ExtResource( 2 )]
+[node name="tower_place27" parent="tower_places" index="21" instance=ExtResource( 3 )]
 
 position = Vector2( 480, 480 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place28" parent="tower_places" index="22" instance=ExtResource( 2 )]
+[node name="tower_place28" parent="tower_places" index="22" instance=ExtResource( 3 )]
 
 position = Vector2( 480, 416 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place29" parent="tower_places" index="23" instance=ExtResource( 2 )]
+[node name="tower_place29" parent="tower_places" index="23" instance=ExtResource( 3 )]
 
 position = Vector2( 352, 416 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place30" parent="tower_places" index="24" instance=ExtResource( 2 )]
+[node name="tower_place30" parent="tower_places" index="24" instance=ExtResource( 3 )]
 
 position = Vector2( 288, 416 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place31" parent="tower_places" index="25" instance=ExtResource( 2 )]
+[node name="tower_place31" parent="tower_places" index="25" instance=ExtResource( 3 )]
 
 position = Vector2( 352, 160 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place33" parent="tower_places" index="26" instance=ExtResource( 2 )]
+[node name="tower_place33" parent="tower_places" index="26" instance=ExtResource( 3 )]
 
 position = Vector2( 352, 224 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place34" parent="tower_places" index="27" instance=ExtResource( 2 )]
+[node name="tower_place34" parent="tower_places" index="27" instance=ExtResource( 3 )]
 
 position = Vector2( 352, 96 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place35" parent="tower_places" index="28" instance=ExtResource( 2 )]
+[node name="tower_place35" parent="tower_places" index="28" instance=ExtResource( 3 )]
 
 position = Vector2( 352, 32 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place36" parent="tower_places" index="29" instance=ExtResource( 2 )]
+[node name="tower_place36" parent="tower_places" index="29" instance=ExtResource( 3 )]
 
 position = Vector2( 416, 32 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place37" parent="tower_places" index="30" instance=ExtResource( 2 )]
+[node name="tower_place37" parent="tower_places" index="30" instance=ExtResource( 3 )]
 
 position = Vector2( 480, 32 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place38" parent="tower_places" index="31" instance=ExtResource( 2 )]
+[node name="tower_place38" parent="tower_places" index="31" instance=ExtResource( 3 )]
 
 position = Vector2( 544, 32 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place39" parent="tower_places" index="32" instance=ExtResource( 2 )]
+[node name="tower_place39" parent="tower_places" index="32" instance=ExtResource( 3 )]
 
 position = Vector2( 608, 32 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place40" parent="tower_places" index="33" instance=ExtResource( 2 )]
+[node name="tower_place40" parent="tower_places" index="33" instance=ExtResource( 3 )]
 
 position = Vector2( 672, 32 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place41" parent="tower_places" index="34" instance=ExtResource( 2 )]
+[node name="tower_place41" parent="tower_places" index="34" instance=ExtResource( 3 )]
 
 position = Vector2( 672, 96 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place42" parent="tower_places" index="35" instance=ExtResource( 2 )]
+[node name="tower_place42" parent="tower_places" index="35" instance=ExtResource( 3 )]
 
 position = Vector2( 672, 160 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place43" parent="tower_places" index="36" instance=ExtResource( 2 )]
+[node name="tower_place43" parent="tower_places" index="36" instance=ExtResource( 3 )]
 
 position = Vector2( 672, 224 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place44" parent="tower_places" index="37" instance=ExtResource( 2 )]
+[node name="tower_place44" parent="tower_places" index="37" instance=ExtResource( 3 )]
 
 position = Vector2( 480, 224 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place45" parent="tower_places" index="38" instance=ExtResource( 2 )]
+[node name="tower_place45" parent="tower_places" index="38" instance=ExtResource( 3 )]
 
 position = Vector2( 480, 160 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place46" parent="tower_places" index="39" instance=ExtResource( 2 )]
+[node name="tower_place46" parent="tower_places" index="39" instance=ExtResource( 3 )]
 
 position = Vector2( 544, 160 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place47" parent="tower_places" index="40" instance=ExtResource( 2 )]
+[node name="tower_place47" parent="tower_places" index="40" instance=ExtResource( 3 )]
 
 position = Vector2( 544, 224 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place48" parent="tower_places" index="41" instance=ExtResource( 2 )]
+[node name="tower_place48" parent="tower_places" index="41" instance=ExtResource( 3 )]
 
 position = Vector2( 544, 288 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place49" parent="tower_places" index="42" instance=ExtResource( 2 )]
+[node name="tower_place49" parent="tower_places" index="42" instance=ExtResource( 3 )]
 
 position = Vector2( 544, 352 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place50" parent="tower_places" index="43" instance=ExtResource( 2 )]
+[node name="tower_place50" parent="tower_places" index="43" instance=ExtResource( 3 )]
 
 position = Vector2( 608, 416 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place51" parent="tower_places" index="44" instance=ExtResource( 2 )]
+[node name="tower_place51" parent="tower_places" index="44" instance=ExtResource( 3 )]
 
 position = Vector2( 544, 416 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place52" parent="tower_places" index="45" instance=ExtResource( 2 )]
+[node name="tower_place52" parent="tower_places" index="45" instance=ExtResource( 3 )]
 
 position = Vector2( 672, 416 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place53" parent="tower_places" index="46" instance=ExtResource( 2 )]
+[node name="tower_place53" parent="tower_places" index="46" instance=ExtResource( 3 )]
 
 position = Vector2( 736, 416 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place54" parent="tower_places" index="47" instance=ExtResource( 2 )]
+[node name="tower_place54" parent="tower_places" index="47" instance=ExtResource( 3 )]
 
 position = Vector2( 800, 288 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place55" parent="tower_places" index="48" instance=ExtResource( 2 )]
+[node name="tower_place55" parent="tower_places" index="48" instance=ExtResource( 3 )]
 
 position = Vector2( 736, 288 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place56" parent="tower_places" index="49" instance=ExtResource( 2 )]
+[node name="tower_place56" parent="tower_places" index="49" instance=ExtResource( 3 )]
 
 position = Vector2( 800, 416 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place32" parent="tower_places" index="50" instance=ExtResource( 2 )]
+[node name="tower_place32" parent="tower_places" index="50" instance=ExtResource( 3 )]
 
 position = Vector2( 352, 288 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place7" parent="tower_places" index="51" instance=ExtResource( 2 )]
+[node name="tower_place7" parent="tower_places" index="51" instance=ExtResource( 3 )]
 
 position = Vector2( 32, 224 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place9" parent="tower_places" index="52" instance=ExtResource( 2 )]
+[node name="tower_place9" parent="tower_places" index="52" instance=ExtResource( 3 )]
 
 position = Vector2( 96, 224 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place2" parent="tower_places" index="53" instance=ExtResource( 2 )]
+[node name="tower_place2" parent="tower_places" index="53" instance=ExtResource( 3 )]
 
 position = Vector2( 480, 352 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place4" parent="tower_places" index="54" instance=ExtResource( 2 )]
+[node name="tower_place4" parent="tower_places" index="54" instance=ExtResource( 3 )]
 
 position = Vector2( 480, 288 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
 
-[node name="tower_place3" parent="tower_places" index="55" instance=ExtResource( 2 )]
+[node name="tower_place3" parent="tower_places" index="55" instance=ExtResource( 3 )]
 
 position = Vector2( 672, 288 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/hide_places = SubResource( 3 )
+anims/show_places = SubResource( 2 )
+blend_times = [  ]
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
 
