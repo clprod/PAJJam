@@ -140,4 +140,6 @@ wait_time = 0.5
 one_shot = false
 autostart = false
 
+[connection signal="timeout" from="destroy_sound/Timer" to="." method="_on_Timer_destroy_timeout"]
+
 
