@@ -9,6 +9,12 @@ var slowed = false
 export(float) var burn_cooldown = 0.6
 var burn_timer = 0
 
+export(Texture) var ice_texture
+export(Texture) var fire_texture
+
+func _ready():
+	get_node("Sprite/Particles2D").emitting = false
+
 func _process(delta):
 	offset += speed * delta
 	if unit_offset >= 1:
@@ -39,10 +45,14 @@ func slow():
 	if not slowed:
 		slowed = true
 		speed /= 2
+		get_node("Sprite/Particles2D").texture	= ice_texture	
+		get_node("Sprite/Particles2D").emitting = true
 	burning = false
 
 func burn():
 	burning = true
+	get_node("Sprite/Particles2D").texture	= fire_texture	
+	get_node("Sprite/Particles2D").emitting = true
 	if slowed:
 		speed *= 2
 	slowed = false
