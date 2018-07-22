@@ -17,6 +17,8 @@ var ice_nb = 0
 var current_wave
 var playing = false
 
+var life_nb = 10
+
 signal wood_changed(amount)
 signal fire_changed(amount)
 signal ice_changed(amount)
@@ -28,6 +30,9 @@ func _ready():
 	current_wave = 0
 
 func _process(delta):
+	if life_nb <= 0 :
+		print("End Game : no more lives")
+	
 	if playing == false: # Between two waves
 		if Input.is_action_just_pressed("ui_accept"): # start next wave
 			playing = true

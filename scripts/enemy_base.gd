@@ -6,6 +6,7 @@ export(float) var health = 10
 func _process(delta):
 	offset += speed * delta
 	if unit_offset >= 1:
+		get_node("/root/game").life_nb -= 1
 		queue_free()
 
 func _draw():
