@@ -60,6 +60,7 @@ func _process(delta):
 			durability_control.show()
 
 func attack_all():
+	atack_sound.play()
 	for e in $Area2DRange.get_overlapping_bodies():
 		e.get_parent().take_damages(damages)
 
