@@ -42,6 +42,7 @@ func _process(delta):
 		if Input.is_action_just_pressed("ui_accept"): # start next wave
 			playing = true
 			get_node("map2").play_anim("hide_places")
+			$ui/start_wave.hide()
 			print("Start wave")
 	else:
 		if current_wave >= waves.size() or waves[current_wave].size() <= 0: # no more enemies to spawn
@@ -54,6 +55,7 @@ func _process(delta):
 				else:
 					print("End wave: press enter to start new wave")
 					get_node("map2").play_anim("show_places")
+					$ui/start_wave.show()
 			return
 
 		spawn_timer += delta
@@ -74,3 +76,10 @@ func change_fire(amount):
 func change_ice(amount):
 	ice_nb += amount
 	emit_signal("ice_changed", ice_nb)
+
+func _on_start_wave_pressed():
+	if playing == false: # Between two waves
+		playing = true
+		get_node("map2").play_anim("hide_places")
+		$ui/start_wave.hide()
+		print("Start wave")
