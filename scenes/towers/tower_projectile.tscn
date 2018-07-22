@@ -20,6 +20,9 @@ extents = Vector2( 32, 32 )
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
+original_scene = "res://scenes/towers/tower_projectile.tscn"
+fire_scene = ""
+ice_scene = ""
 aoe = false
 attack_cooldown = 0.7
 durability = 10
