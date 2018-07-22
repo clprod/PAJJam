@@ -17,6 +17,8 @@ func take_damages(amount):
 		var game = get_node("/root/game")
 		game.change_wood(5)
 		if randi() % 100 <= 3:
-			game.change_fire(1)
-			game.change_ice(1)
+			if randi() % 2 == 0:
+				game.change_fire(1)
+			else:
+				game.change_ice(1)
 		queue_free()

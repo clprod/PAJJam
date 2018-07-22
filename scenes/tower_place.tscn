@@ -12,7 +12,6 @@ extents = Vector2( 32, 32 )
 
 [node name="tower_place" type="Sprite" index="0"]
 
-self_modulate = Color( 1, 1, 1, 0.502745 )
 texture = ExtResource( 1 )
 region_rect = Rect2( 0, 64, 32, 32 )
 script = ExtResource( 2 )
