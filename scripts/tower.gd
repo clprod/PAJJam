@@ -2,6 +2,10 @@ extends Node2D
 
 signal durability_changed(new, maximum)
 
+export(String) var original_scene = ""
+export(String) var fire_scene = ""
+export(String) var ice_scene = ""
+
 export(bool) var aoe = false
 export(float) var attack_cooldown = 1
 export(int) var durability = 10
@@ -57,7 +61,6 @@ func attack_one():
 	projectile.direction = (to_attack.global_position - global_position).normalized()
 
 func destroy_tower():
-	print("tower destroyed")
 	if durability_control != null:
 		disconnect("durability_changed", durability_control, "set_durability")
 		durability_control.hide()
@@ -65,6 +68,10 @@ func destroy_tower():
 	var ruins = ruin_scene.instance()
 	get_node("/root/game/towers").add_child(ruins)
 	ruins.position = position
+	ruins.original_tower = original_scene
+	ruins.fire_tower = fire_scene
+	ruins.ice_tower = ice_scene
+
 	queue_free()
 
 func find_last():

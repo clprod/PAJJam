@@ -18,6 +18,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
+repair_price = 6
 
 [node name="Control" type="Control" parent="." index="0"]
 
