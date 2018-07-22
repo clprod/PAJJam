@@ -17,6 +17,9 @@ extents = Vector2( 32, 32 )
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
+original_scene = ""
+fire_scene = ""
+ice_scene = ""
 aoe = false
 attack_cooldown = 1
 durability = 10
