@@ -21,10 +21,12 @@ export(PackedScene) var projectile_scene
 
 var atack_sound
 var construction_sound
+var destroy_sound
 
 func _ready():
 	atack_sound = get_node("atack_sound")
 	construction_sound = get_node("construct_sound")
+	destroy_sound = get_node("destroy_sound")
 	construction_sound.play()
 	current_durability = durability
 	if not aoe:
@@ -70,6 +72,7 @@ func attack_one():
 	projectile.direction = (to_attack.global_position - global_position).normalized()
 
 func destroy_tower():
+	destroy_sound.play()
 	if durability_control != null:
 		disconnect("durability_changed", durability_control, "set_durability")
 		durability_control.hide()
