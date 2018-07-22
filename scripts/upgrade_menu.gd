@@ -53,7 +53,10 @@ func _on_fire_button_pressed():
 	remove_ruins()
 
 func _on_ice_button_pressed():
-	pass # replace with function body
+	place_tower(load(ice_tower).instance())
+	get_node("/root/game").change_ice(-1)
+	hide()
+	remove_ruins()
 
 func place_tower(tower):
 	tower.position = ruins.position
