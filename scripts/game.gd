@@ -1,7 +1,7 @@
 extends Node2D
 
 var waves = [
-[[1, 1], [1, 4], [1, 7]],
+[[1, 1], [1, 4], [1, 7], [1, 11]],
 [[1, 1], [1, 2.5], [1, 4], [1, 5.5], [1, 7]],
 [[1, 1], [1, 1.5], [1, 2], [1, 4], [1, 4.5], [1, 5], [1, 7], [1, 7.5], [1, 8]],
 [[1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [1, 8], [1, 9]],
@@ -70,7 +70,7 @@ func _process(delta):
 		spawn_timer += delta
 		if spawn_timer >= waves[current_wave][0][1]:
 			var enemy = enemy_scene.instance()
-			enemy.speed = 50
+			enemy.speed = 60
 			get_node("map2").add_child(enemy)
 			waves[current_wave].remove(0)
 

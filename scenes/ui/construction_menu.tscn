@@ -22,7 +22,7 @@ _sections_unfolded = [ "Mouse" ]
 projectile_tower_base = null
 aoe_tower_base = null
 projectile_tower_price = 10
-aoe_tower_price = 8
+aoe_tower_price = 12
 
 [node name="Control" type="Control" parent="." index="0"]
 

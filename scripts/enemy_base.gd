@@ -19,6 +19,8 @@ func _process(delta):
 	offset += speed * delta
 	if unit_offset >= 1:
 		get_node("/root/game").life_nb -= 1
+		get_node("/root/game/Camera2D").shake(0.2, 15, 4)
+		get_node("/root/game/ui/Panel/Label").text = "Lives: " + str(get_node("/root/game").life_nb)
 		queue_free()
 
 	if burning:
@@ -32,8 +34,8 @@ func take_damages(amount):
 	get_node("/root/game/Camera2D").shake(0.2, 15, 2)
 	if health <= 0:
 		var game = get_node("/root/game")
-		game.change_wood(4)
-		if randi() % 100 <= 100:
+		game.change_wood(3)
+		if randi() % 100 <= 5:
 			if randi() % 2 == 0:
 				game.change_fire(1)
 			else:
