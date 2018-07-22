@@ -44,6 +44,9 @@ visible = false
 [node name="ressource_fire" parent="ui" index="1" instance=ExtResource( 5 )]
 
 editor/display_folded = true
+margin_top = 54.0
+margin_bottom = 104.0
+_sections_unfolded = [ "Rect", "Size Flags" ]
 
 [node name="TextureRect" parent="ui/ressource_fire/Panel" index="0"]
 
@@ -52,8 +55,9 @@ texture = ExtResource( 6 )
 [node name="ressource_ice" parent="ui" index="2" instance=ExtResource( 5 )]
 
 editor/display_folded = true
-margin_top = 54.0
-margin_bottom = 104.0
+margin_top = 109.0
+margin_bottom = 159.0
+_sections_unfolded = [ "Rect", "Size Flags" ]
 
 [node name="TextureRect" parent="ui/ressource_ice/Panel" index="0"]
 
@@ -62,8 +66,7 @@ texture = ExtResource( 7 )
 [node name="ressource_wood" parent="ui" index="3" instance=ExtResource( 5 )]
 
 editor/display_folded = true
-margin_top = 109.0
-margin_bottom = 159.0
+_sections_unfolded = [ "Rect", "Size Flags" ]
 
 [connection signal="fire_changed" from="." to="ui/ressource_fire" method="set_amount"]
 

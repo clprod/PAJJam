@@ -15,6 +15,8 @@ export(PackedScene) var projectile_scene
 
 func _ready():
 	current_durability = durability
+	if not aoe:
+		$Sprite/Sprite.rotate(deg2rad(randi() % 360))
 
 func _process(delta):
 	attack_timer -= delta
@@ -41,12 +43,10 @@ func _process(delta):
 			durability_control.show()
 
 func attack_all():
-	print("attack all")
 	for e in $Area2DRange.get_overlapping_bodies():
 		e.get_parent().take_damages(5)
 
 func attack_one():
-	print("attack one")
 	var to_attack = find_last()
 	
 	var projectile = projectile_scene.instance()
@@ -73,8 +73,6 @@ func find_last():
 func _draw():
 	if aoe:
 		draw_circle(Vector2(), 16, Color(0, 0, 1))
-	else:
-		draw_circle(Vector2(), 16, Color(0, 0.3, 0.3))
 	
 	if show_infos:
 		draw_circle(Vector2(), $Area2DRange/CollisionShape2D.shape.radius, Color(0, 1, 0, 0.1))
