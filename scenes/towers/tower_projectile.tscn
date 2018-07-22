@@ -150,4 +150,6 @@ autostart = false
 
 [connection signal="mouse_exited" from="Area2DBody" to="." method="_on_Area2DBody_mouse_exited"]
 
+[connection signal="timeout" from="destroy_sound/Timer" to="." method="_on_Timer_destroy_timeout"]
+
 

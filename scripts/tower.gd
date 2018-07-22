@@ -74,6 +74,7 @@ func attack_one():
 	projectile.direction = (to_attack.global_position - global_position).normalized()
 
 func destroy_tower():
+	get_node("destroy_sound/Timer").start()
 	is_destroy = true
 	destroy_sound.play()
 	if durability_control != null:
