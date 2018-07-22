@@ -8,6 +8,7 @@ export(String) var ice_scene = ""
 
 export(bool) var aoe = false
 export(float) var attack_cooldown = 1
+export(float) var damages = 5
 export(int) var durability = 10
 export(PackedScene) var ruin_scene
 var attack_timer = 0
@@ -50,7 +51,7 @@ func _process(delta):
 
 func attack_all():
 	for e in $Area2DRange.get_overlapping_bodies():
-		e.get_parent().take_damages(5)
+		e.get_parent().take_damages(damages)
 
 func attack_one():
 	var to_attack = find_last()
@@ -58,6 +59,7 @@ func attack_one():
 	var projectile = projectile_scene.instance()
 	get_node("/root/game").add_child(projectile)
 	projectile.global_position = global_position
+	projectile.damages = damages
 	projectile.direction = (to_attack.global_position - global_position).normalized()
 
 func destroy_tower():

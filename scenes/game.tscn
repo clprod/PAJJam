@@ -13,7 +13,7 @@
 [ext_resource path="res://scenes/towers/tower_aoe.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/ui/upgrade_menu.tscn" type="PackedScene" id=12]
 
-[node name="game" type="Node2D"]
+[node name="game" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -79,10 +79,14 @@ texture = ExtResource( 8 )
 
 [node name="construction_menu" parent="ui" index="4" instance=ExtResource( 9 )]
 
+visible = false
+_sections_unfolded = [ "Mouse", "Rect" ]
 projectile_tower_base = ExtResource( 10 )
 aoe_tower_base = ExtResource( 11 )
 
 [node name="upgrade_menu" parent="ui" index="5" instance=ExtResource( 12 )]
+
+visible = false
 
 [connection signal="fire_changed" from="." to="ui/ressource_fire" method="set_amount"]
 

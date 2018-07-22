@@ -33,7 +33,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1.4, 1.4 ), Vector2( 1, 1 ) ]
 }
 
-[node name="tower_aoe" type="Node2D"]
+[node name="tower_aoe" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -41,8 +41,9 @@ original_scene = "res://scenes/towers/tower_aoe.tscn"
 fire_scene = ""
 ice_scene = ""
 aoe = true
-attack_cooldown = 1
-durability = 10
+attack_cooldown = 0.8
+damages = 3.0
+durability = 14
 ruin_scene = ExtResource( 2 )
 projectile_scene = null
 

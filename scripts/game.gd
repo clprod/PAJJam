@@ -14,7 +14,7 @@ var waves = [
 export(PackedScene) var enemy_scene
 var spawn_timer = 0
 
-var wood_nb = 25
+var wood_nb = 10
 var fire_nb = 0
 var ice_nb = 0
 

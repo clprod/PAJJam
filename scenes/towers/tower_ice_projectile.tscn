@@ -8,6 +8,9 @@
 [node name="tower_ice_projectile" index="0" instance=ExtResource( 1 )]
 
 original_scene = "res://scenes/towers/tower_ice_projectile.tscn"
+attack_cooldown = 1.5
+damages = 3.0
+durability = 20
 projectile_scene = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="." index="0"]

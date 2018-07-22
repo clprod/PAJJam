@@ -40,7 +40,8 @@ loop = false
 lookahead = 4.0
 script = ExtResource( 1 )
 speed = 0
-health = 10
+health = 12.0
+burn_cooldown = 0.6
 
 [node name="Kinematicbody2D" type="KinematicBody2D" parent="." index="0"]
 
