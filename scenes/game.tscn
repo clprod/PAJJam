@@ -79,11 +79,14 @@ texture = ExtResource( 8 )
 
 [node name="construction_menu" parent="ui" index="4" instance=ExtResource( 9 )]
 
+visible = false
 _sections_unfolded = [ "Mouse", "Rect" ]
 projectile_tower_base = ExtResource( 10 )
 aoe_tower_base = ExtResource( 11 )
 
 [node name="upgrade_menu" parent="ui" index="5" instance=ExtResource( 12 )]
+
+visible = false
 
 [connection signal="fire_changed" from="." to="ui/ressource_fire" method="set_amount"]
 

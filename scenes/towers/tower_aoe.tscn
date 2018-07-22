@@ -37,6 +37,9 @@ tracks/0/keys = {
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
+original_scene = "res://scenes/towers/tower_aoe.tscn"
+fire_scene = null
+ice_scene = null
 aoe = true
 attack_cooldown = 1
 durability = 10

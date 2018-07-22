@@ -15,17 +15,17 @@ func _ready():
 func open():
 	if get_node("/root/game").wood_nb < projectile_tower_price:
 		$Control/Panel/VBoxContainer/HBoxContainer/VBoxContainer/proj_button.disabled = true
-		$Control/Panel/VBoxContainer/HBoxContainer/VBoxContainer/proj_price_container.modulate = Color(1, 0, 0, 0.7)
+		$Control/Panel/VBoxContainer/HBoxContainer/VBoxContainer.modulate = Color(1, 0, 0, 0.7)
 	else:
 		$Control/Panel/VBoxContainer/HBoxContainer/VBoxContainer/proj_button.disabled = false
-		$Control/Panel/VBoxContainer/HBoxContainer/VBoxContainer/proj_price_container.modulate = Color(1, 1, 1, 1)
+		$Control/Panel/VBoxContainer/HBoxContainer/VBoxContainer.modulate = Color(1, 1, 1, 1)
 
 	if get_node("/root/game").wood_nb < aoe_tower_price:
 		$Control/Panel/VBoxContainer/HBoxContainer/VBoxContainer2/aoe_button.disabled = true
-		$Control/Panel/VBoxContainer/HBoxContainer/VBoxContainer2/aoe_price_container.modulate = Color(1, 0, 0, 0.7)
+		$Control/Panel/VBoxContainer/HBoxContainer/VBoxContainer2.modulate = Color(1, 0, 0, 0.7)
 	else:
 		$Control/Panel/VBoxContainer/HBoxContainer/VBoxContainer2/aoe_button.disabled = false
-		$Control/Panel/VBoxContainer/HBoxContainer/VBoxContainer2/aoe_price_container.modulate = Color(1, 1, 1, 1)
+		$Control/Panel/VBoxContainer/HBoxContainer/VBoxContainer2.modulate = Color(1, 1, 1, 1)
 
 	show()
 
