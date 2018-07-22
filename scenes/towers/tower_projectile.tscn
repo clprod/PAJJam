@@ -38,7 +38,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 0.7 ), Vector2( 1, 1 ) ]
 }
 
-[node name="tower_projectile" type="Node2D"]
+[node name="tower_projectile" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -138,6 +138,13 @@ max_distance = 2000.0
 attenuation = 1.0
 bus = "Master"
 area_mask = 1
+
+[node name="Timer" type="Timer" parent="destroy_sound" index="0"]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = false
+autostart = false
 
 [connection signal="mouse_entered" from="Area2DBody" to="." method="_on_Area2D2_mouse_entered"]
 

@@ -16,6 +16,7 @@ var attack_timer = 0
 var show_infos = false
 var current_durability
 var durability_control
+var is_destroy
 
 export(PackedScene) var projectile_scene
 
@@ -24,6 +25,7 @@ var construction_sound
 var destroy_sound
 
 func _ready():
+	is_destroy = false
 	atack_sound = get_node("atack_sound")
 	construction_sound = get_node("construct_sound")
 	destroy_sound = get_node("destroy_sound")
@@ -43,7 +45,7 @@ func _process(delta):
 		attack_timer = attack_cooldown
 		current_durability -= 1
 		emit_signal("durability_changed", current_durability, durability)
-		if current_durability <= 0:
+		if current_durability <= 0 and !is_destroy:
 			destroy_tower()
 
 	if not aoe:
@@ -72,6 +74,7 @@ func attack_one():
 	projectile.direction = (to_attack.global_position - global_position).normalized()
 
 func destroy_tower():
+	is_destroy = true
 	destroy_sound.play()
 	if durability_control != null:
 		disconnect("durability_changed", durability_control, "set_durability")
@@ -84,7 +87,7 @@ func destroy_tower():
 	ruins.fire_tower = fire_scene
 	ruins.ice_tower = ice_scene
 
-	queue_free()
+	hide()
 
 func find_last():
 	if $Area2DRange.get_overlapping_bodies().size() <= 0:
@@ -116,3 +119,6 @@ func _on_Area2DBody_mouse_exited():
 	durability_control.hide()
 	disconnect("durability_changed", durability_control, "set_durability")
 	durability_control = null
+
+func _on_Timer_destroy_timeout():
+	queue_free()
