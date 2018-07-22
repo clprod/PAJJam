@@ -7,7 +7,9 @@
 custom_solver_bias = 0.0
 radius = 8.0
 
-[node name="enemy_base" type="PathFollow2D" index="0"]
+[node name="enemy_base" type="PathFollow2D" index="0" groups=[
+"enemies",
+]]
 
 offset = 0.0
 h_offset = 0.0
