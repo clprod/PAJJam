@@ -19,7 +19,10 @@ var durability_control
 
 export(PackedScene) var projectile_scene
 
+var atack_sound
+
 func _ready():
+	atack_sound = get_node("atack_sound")
 	current_durability = durability
 	if not aoe:
 		$Sprite/Sprite.rotate(deg2rad(randi() % 360))
@@ -58,6 +61,7 @@ func attack_one():
 	
 	var projectile = projectile_scene.instance()
 	get_node("/root/game").add_child(projectile)
+	atack_sound.play()
 	projectile.global_position = global_position
 	projectile.damages = damages
 	projectile.direction = (to_attack.global_position - global_position).normalized()

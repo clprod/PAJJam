@@ -22,6 +22,7 @@ fire_scene = ""
 ice_scene = ""
 aoe = false
 attack_cooldown = 1
+damages = 5
 durability = 10
 ruin_scene = ExtResource( 2 )
 projectile_scene = null
@@ -59,6 +60,17 @@ _sections_unfolded = [ "Collision", "Pickable" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DBody" index="0"]
 
 shape = SubResource( 2 )
+
+[node name="atack_sound" type="AudioStreamPlayer2D" parent="." index="2"]
+
+stream = null
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 [connection signal="mouse_entered" from="Area2DBody" to="." method="_on_Area2D2_mouse_entered"]
 
