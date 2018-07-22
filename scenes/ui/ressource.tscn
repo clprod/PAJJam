@@ -24,7 +24,7 @@ __meta__ = {
 
 [node name="Panel" type="Panel" parent="." index="0"]
 
-self_modulate = Color( 1, 1, 1, 0.182314 )
+self_modulate = Color( 1, 1, 1, 0.342549 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
